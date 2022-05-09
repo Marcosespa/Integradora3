@@ -7,8 +7,6 @@ public class Soat extends Document{
     public Soat(double price, int year, double covergeAmount){
         super(price, year);
         this.covergeAmount=covergeAmount;
-        
-
     }
 
 }

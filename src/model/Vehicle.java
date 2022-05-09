@@ -11,7 +11,7 @@ public class Vehicle{
 	private int model;
 	private double cylinderCapacity;
 	private double mileage;
-	private String type;
+	private String type; //Nuevo o usado
 	private String plate;
 
 

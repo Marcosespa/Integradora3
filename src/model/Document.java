@@ -14,11 +14,19 @@ public class Document{
     public Document(double price, int year){
         this.price=price;
         this.year=year;
-        
+
 		documentMatriz= new ArrayList<int[][]>() ;
-
-
     }
+/**
+    public String CreateDocument(){
+        for (int i=0; i<figures.size() ; i++){
+			if(figures.get(i).getId().equalsIgnoreCase(searchId)){ // COMO BUSCAR EL NOMBRE
+				index=i; // Esa es la posicion vacia 
+			}
+		}
+        return "";
+    }
+*/
 
 
 

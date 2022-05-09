@@ -88,7 +88,7 @@ public class Main {
 		if(decision==2){// CREAR UNA MOTO NUEVO 
 			registerMotorcycle();
 		}else{ // REGISTRA UN CARRO USADO
-
+			//VEHICULE ATRIBUTES
 			double basePrice;
 			double salePrice;
 			String brand;
@@ -100,7 +100,17 @@ public class Main {
 			int doorsNumber;
 			String typeWindows;
 
-			String carType;			
+			String carType;	
+			
+			//DOCUMENTS ATRIBUTE
+			// SOAT
+			double priceSoat;
+			int yearSoat;	
+			double covergeAmount;			
+			//TARJETA DE PROPIEDAD
+			double priceTP;
+			int yearTP;			
+			double gasLevels;
 
 			System.out.println("Registring the car ....");
 
@@ -138,27 +148,106 @@ public class Main {
 			}			
 
 
-			
-			
-			System.out.println("Please select the type of the vehicle 1.) new 2.) used ");
+			System.out.println("Please select the type of the vehicle \n 1.) new \n 2.) used ");
 			int d=sc.nextInt();	
 			if(d==1){ // MANDO LOS DATOS DE LOS VEHICULOS CUANDO SON NUEVOS
 				plate="Empty plate";
 				type="NEW";
-				manager.addCar(basePrice, salePrice, brand, model, cylinderCapacity, mileage, type, plate, doorsNumber, typeWindows, carType);
 
 			}else{ // LOS DATOS CUANDO ES UN VEHICULO DE SEGUNDA
 				System.out.println("Please select the plate of the vehicle");
 				plate=sc.nextLine();					
 				type="USED";
-				manager.addCar(basePrice, salePrice, brand, model, cylinderCapacity, mileage, type, plate, doorsNumber, typeWindows, carType);
-
 			}
+
+			System.out.println("Please select the type of gasoline of the vehicle \n 1.) gasoline \n 2.) electric \n 3.) hybrid ");
+			int d1=sc.nextInt();	
+			if(d1==1){ // GASOLINE CAR
+				double gasolineTankCapacity;
+				String typeGasoline="";
+				double oilConsumeByKm;
+				System.out.println("Please select the type of gasoline capacity of the vehicle ");
+				gasolineTankCapacity=sc.nextDouble();
+				System.out.println("Please select the type of gasoline of the vehicle \n 1.)Extra \n 2.) Regular \n 3.) diesel");
+				int d2=sc.nextInt();
+				if(d2==1){
+					typeGasoline="Extra";
+				}if(d2==2){
+					typeGasoline="Regular";
+				}if(d2==3){
+					typeGasoline="Diesel";
+				}
+				System.out.println("The oil consume by km it's being calculated \n");
+				oilConsumeByKm = gasolineTankCapacity*(cylinderCapacity/150);	
+
+				manager.addCarGasoline(basePrice, salePrice, brand, model, cylinderCapacity, mileage, type, plate, doorsNumber, typeWindows, carType, gasolineTankCapacity, typeGasoline, oilConsumeByKm);
+
+
+
+			}if(d1==2){// ELECTRIC CAR 
+				String chargerType="";
+				double batteryDuration;
+				double batteryConsumption;
+
+				System.out.println("Please select the battery duration of the vehicle by km");
+				batteryDuration=sc.nextDouble();
+				System.out.println("Please select the charger type of the vehicle \n 1.) fast \n 2.) normal ");
+				int d3=sc.nextInt();		
+
+				if(d3==1){
+					chargerType="Fast";
+					batteryConsumption=(batteryDuration+13)*(cylinderCapacity/100);
+				}else{
+					chargerType="Normal";
+					batteryConsumption=(batteryDuration+18)*(cylinderCapacity/100);
+
+				}
+				System.out.println("Please select the battery duration of the vehicle by km");
+				batteryDuration=sc.nextDouble();
+				manager.addCarElectric(basePrice, salePrice, brand, model, cylinderCapacity, mileage, type, plate, doorsNumber, typeWindows, carType, chargerType, batteryDuration,batteryConsumption);
+			
+			}if(d1==3){// HYBRID CAR
+				//GASOLINE ATRIBUTES
+				double gasolineTankCapacity;
+				String typeGasoline="";
+				double oilConsumeByKm;
+				//ELECTRIC ATRIBUTES
+				String chargerType="";
+				double batteryDuration;
+				double batteryConsumption;
+
+				System.out.println("Please select the type of gasoline capacity of the vehicle ");
+				gasolineTankCapacity=sc.nextDouble();
+				System.out.println("Please select the type of gasoline of the vehicle \n 1.)Extra \n 2.) Regular \n 3.) diesel");
+				int d2=sc.nextInt();
+				if(d2==1){
+					typeGasoline="Extra";
+				}if(d2==2){
+					typeGasoline="Regular";
+				}if(d2==3){
+					typeGasoline="Diesel";
+				}
+				System.out.println("The oil consume by km it's being calculated \n");
+				oilConsumeByKm = gasolineTankCapacity*(cylinderCapacity/180);	
+				// ELECTRIC
+				System.out.println("Please select the battery duration of the vehicle by km");
+				batteryDuration=sc.nextDouble();				
+				System.out.println("Please select the charger type of the vehicle \n 1.) fast \n 2.) normal ");
+				int d3=sc.nextInt();		
+				if(d3==1){
+					chargerType="Fast";
+					batteryConsumption=batteryDuration*(cylinderCapacity/200);
+				}else{
+					chargerType="Normal";
+					batteryConsumption=(batteryDuration+7)*(cylinderCapacity/200);
+				}
+	
+				manager.addCarHybrid(basePrice, salePrice, brand, model, cylinderCapacity, mileage, type, plate, doorsNumber, typeWindows, carType, gasolineTankCapacity, typeGasoline, oilConsumeByKm, chargerType, batteryDuration,batteryConsumption);			
+			}
+
+
+
 		}
-
-
-
-
 
 	}
 
@@ -170,37 +259,58 @@ public class Main {
 		int model;
 		double cylinderCapacity;
 		double mileage;
-		int type;	
+		String type;	
 		String plate;
-		
-		System.out.println("Registring the motorcycle ....");
+		//MOTORCYCLE ATRIBUTES
+		double gasolineCapacity;
+		double oilConsume;
+		String MotoType="";
 
+		System.out.println("Registring the motorcycle ....");
 
 		System.out.println("Please select  the base price of the vehicle");
 		basePrice=sc.nextInt();
-		System.out.println("Please select  the sale price of the vehicle");
+		System.out.println("Please select  the sale price of the motorcycle");
 		salePrice=sc.nextInt();
-		System.out.println("Please select  the brand of the vehicle");
+		System.out.println("Please select  the brand of the motorcycle");
 		brand=sc.nextLine();
-		System.out.println("Please select the model of the vehicle");
+		System.out.println("Please select the model of the motorcycle");
 		model=sc.nextInt();			
-		System.out.println("Please select the cylinder capacity of the vehicle");
+		System.out.println("Please select the cylinder capacity of the motorcycle");
 		cylinderCapacity=sc.nextDouble();					
-		System.out.println("Please select the cylinder capacity of the vehicle");
+		System.out.println("Please select the cylinder capacity of the motorcycle");
 		cylinderCapacity=sc.nextDouble();	
 		System.out.println("Please select the milage of the vehicle");
 		mileage=sc.nextDouble();				
-		System.out.println("Please select the type of the vehicle 1.) new 2.) used ");
-		type=sc.nextInt();	
-		if(type==1){ // MANDO LOS DATOS DE LOS VEHICULOS CUANDO SON NUEVOS
+		System.out.println("Please select the type of the motorcycle\n 1.) new \n2.) used ");
+		int d1=sc.nextInt();	
+		if(d1==1){ // MANDO LOS DATOS DE LOS VEHICULOS CUANDO SON NUEVOS
+			type="New vehicle";
 			plate="EMPTY PLATE";
 
 		}else{ // LOS DATOS CUANDO ES UN VEHICULO DE SEGUNDA
+			type="Used vehicle";
 			System.out.println("Please select the plate of the vehicle");
 			plate=sc.nextLine();					
-
 		}
+		System.out.println("Please select the gasoline Capacity of the motorcycle");
+		gasolineCapacity=sc.nextDouble();		
+		System.out.println("The oil consume by km it's being calculated \n");
+		oilConsume = gasolineCapacity*(cylinderCapacity/75);	
+		System.out.println("Please select the type of the motorcycle\n 1.) Standard \n 2.) Sport \n 3.) Scooter \n 4.) Cross");
+		int d2=sc.nextInt();
+		if(d2==1){
+			MotoType="Standard";
+		}if(d2==2){
+			MotoType="Sport";
+		}if(d2==3){
+			MotoType="Scooter";
+		}if(d2==4){
+			MotoType="Cross";
+		}
+		
 
+		manager.addMotorcycle(basePrice, salePrice, brand, model, cylinderCapacity, mileage, type, plate, gasolineCapacity, oilConsume, MotoType);
 	}
 
 	
