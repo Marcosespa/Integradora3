@@ -16,10 +16,8 @@ public class CarGasoline extends Vehicle{
 
 
 
-    public CarGasoline(double basePrice, double salePrice, String brand,int model, 
-	double cylinderCapacity, double mileage,String type,String plate, int doorsNumber, 
-	String typeWindows, String carType, double gasolineTankCapacity, String typeGasoline, double oilConsumeByKm) {
-		super(basePrice, salePrice, brand, model, cylinderCapacity, mileage,type, plate);
+    public CarGasoline(double basePrice, double salePrice, String brand,int model, double cylinderCapacity, double mileage, String type, String plate, Soat soat, MechanicalTechnical mechanicalTechnical, PropertyCard propertyCard, int doorsNumber, String typeWindows, String carType, double gasolineTankCapacity, String typeGasoline, double oilConsumeByKm) {
+		super(basePrice, salePrice, brand, model, cylinderCapacity, mileage,type, plate,soat,mechanicalTechnical,propertyCard);
 		this.doorsNumber=doorsNumber;
 		this.typeWindows=typeWindows;
 		this.carType=carType;

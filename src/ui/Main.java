@@ -1,5 +1,6 @@
 package ui;
 
+import java.beans.DesignMode;
 import java.util.Scanner;
 import model.ConcessionaireManager;
 
@@ -60,11 +61,10 @@ public class Main {
 			registerVehicle();
 			break;
 		case 2:
-
+			calculatePrice();
             break;
-	
 		case 3:
-			//createNumericMatrix();
+			reportVehicles();
 			break;
 
 		case 4:
@@ -79,11 +79,11 @@ public class Main {
 
 	}
 
-	private void registerVehicle() {
+	public void registerVehicle() {
 		System.out.println("Registring the vehicle ....");
-		int decision;
 		System.out.println("Please select  the type of vehicle you want to register \n 1.) Car \n 2.) Motorcycle");
-		decision=sc.nextInt();
+		int decision=sc.nextInt();
+		sc.nextLine();
 
 		if(decision==2){// CREAR UNA MOTO NUEVO 
 			registerMotorcycle();
@@ -106,31 +106,48 @@ public class Main {
 			// SOAT
 			double priceSoat;
 			int yearSoat;	
-			double covergeAmount;			
+			double covergeAmount;
+			String imageDocSoat;
+			//TECNOMECANICA 
+			double priceTM;
+			int yearTM;			
+			double gasLevels;
+			String imageDocTM;
 			//TARJETA DE PROPIEDAD
 			double priceTP;
-			int yearTP;			
-			double gasLevels;
+			int yearTP;		
+			String owner;			
+			String imageDocTP;
 
 			System.out.println("Registring the car ....");
 
 
 			System.out.println("Please select  the base price of the vehicle");
 			basePrice=sc.nextInt();
+			sc.nextLine();
 			System.out.println("Please select  the sale price of the vehicle");
 			salePrice=sc.nextInt();
+			sc.nextLine();
 			System.out.println("Please select  the brand of the vehicle");
 			brand=sc.nextLine();
+			sc.nextLine();
 			System.out.println("Please select the model of the vehicle");
 			model=sc.nextInt();			
+			sc.nextLine();
 			System.out.println("Please select the cylinder capacity of the vehicle");
 			cylinderCapacity=sc.nextDouble();					
+			sc.nextLine();
 			System.out.println("Please select the milage of the vehicle");
 			mileage=sc.nextDouble();
+			sc.nextLine();
 			System.out.println("Please select the number of doors of the vehicle");
 			doorsNumber=sc.nextInt();
+			sc.nextLine();
 			System.out.println("Please select the type of doors of the vehicle \n 1.) Polarizada \n 2.)No polarizada");
 			int tWindows=sc.nextInt();	
+			sc.nextLine();
+
+
 			if(tWindows==1){
 				typeWindows="Polarizada";
 			}else{
@@ -141,6 +158,7 @@ public class Main {
 			+ "1.) SEDAN \n" +
 			" 2.)VAN \n ");
 			int tcar=sc.nextInt();	
+			sc.nextLine();
 			if(tcar==1){
 				carType="SEDAN";
 			}else{
@@ -150,26 +168,123 @@ public class Main {
 
 			System.out.println("Please select the type of the vehicle \n 1.) new \n 2.) used ");
 			int d=sc.nextInt();	
+			sc.nextLine();
+
 			if(d==1){ // MANDO LOS DATOS DE LOS VEHICULOS CUANDO SON NUEVOS
 				plate="Empty plate";
 				type="NEW";
+				// SOAT EMPTY
+				priceSoat=0;
+				yearSoat=0;	
+				covergeAmount=0;	
+				imageDocSoat="";
+				//TECNOMECANICA PREGUNTAR
+
+				System.out.println("Please select the mechanical technical price");
+				priceTM=sc.nextDouble();	
+				sc.nextLine();
+				System.out.println("Please select the year of the tecno");
+				yearTM=sc.nextInt();
+				sc.nextLine();			
+				System.out.println("Please select the gas level of the vehicule");
+				gasLevels=sc.nextDouble();	
+				sc.nextLine();
+				System.out.println("The Soat number it's going to be aleatory");
+				imageDocTM=manager.TMGenerator();
+				sc.nextLine();
+
+				//TARJETA DE PROPIEDAD VACIA 
+				priceTP=0;
+				yearTP=0;		
+				owner="";		
+				imageDocTP="";
+
+                if(yearTM<2022){
+
+                    salePrice += 500000;
+                }else{
+                    salePrice += 0;
+                }						
+
 
 			}else{ // LOS DATOS CUANDO ES UN VEHICULO DE SEGUNDA
+
 				System.out.println("Please select the plate of the vehicle");
-				plate=sc.nextLine();					
+				plate=sc.nextLine();
+				sc.nextLine();
 				type="USED";
+
+				// EL VEHICULO TIENE SOAT
+				System.out.println("Please select the vehicule price");
+				priceSoat=sc.nextDouble();	
+				sc.nextLine();
+				System.out.println("Please select the year of the soat");
+				yearSoat=sc.nextInt();
+				sc.nextLine();
+				System.out.println("Please select the coverage amount of the soat");
+				covergeAmount=sc.nextDouble();		
+				sc.nextLine();
+				System.out.println("The Soat number it's going to be aleatory");
+				imageDocSoat=manager.soatGenerator();
+				sc.nextLine();
+
+
+				
+				// EL VEHICULO TIENE TECNOMECANICA 
+				System.out.println("Please select the mechanical technical price");
+				priceTM=sc.nextDouble();
+				sc.nextLine();
+				System.out.println("Please select the year of the tecno");
+				yearTM=sc.nextInt();
+				sc.nextLine();
+				System.out.println("Please select the gas level of the vehicule");
+				gasLevels=sc.nextDouble();	
+				sc.nextLine();
+				System.out.println("The mechanical Technical number it's going to be aleatory");
+				imageDocTM=manager.TMGenerator();
+				sc.nextLine();
+
+				//TARJETA DE PROPIEDAD DEL VEHICULO
+				System.out.println("Please select the price of the property card");
+				priceTP=sc.nextDouble();
+				sc.nextLine();
+				System.out.println("Please select the year of the property card");
+				yearTP=sc.nextInt();		
+				sc.nextLine();
+				System.out.println("Please select the name of the owner of the property card");
+				owner=sc.nextLine();
+				sc.nextLine();
+				System.out.println("The Property Card number it's going to be aleatory");
+				imageDocTP=manager.TMGenerator();				
+				sc.nextLine();
+
+                if(yearTM<2022){
+                    salePrice += 500000;
+                }
+				if(yearSoat<2022){
+                    salePrice += 500000;
+				}
+	
+
 			}
 
+				
+
+
+
 			System.out.println("Please select the type of gasoline of the vehicle \n 1.) gasoline \n 2.) electric \n 3.) hybrid ");
-			int d1=sc.nextInt();	
+			int d1=sc.nextInt();
+			sc.nextLine();
 			if(d1==1){ // GASOLINE CAR
 				double gasolineTankCapacity;
 				String typeGasoline="";
 				double oilConsumeByKm;
 				System.out.println("Please select the type of gasoline capacity of the vehicle ");
 				gasolineTankCapacity=sc.nextDouble();
+				sc.nextLine();
 				System.out.println("Please select the type of gasoline of the vehicle \n 1.)Extra \n 2.) Regular \n 3.) diesel");
 				int d2=sc.nextInt();
+				sc.nextLine();
 				if(d2==1){
 					typeGasoline="Extra";
 				}if(d2==2){
@@ -180,7 +295,10 @@ public class Main {
 				System.out.println("The oil consume by km it's being calculated \n");
 				oilConsumeByKm = gasolineTankCapacity*(cylinderCapacity/150);	
 
-				manager.addCarGasoline(basePrice, salePrice, brand, model, cylinderCapacity, mileage, type, plate, doorsNumber, typeWindows, carType, gasolineTankCapacity, typeGasoline, oilConsumeByKm);
+				if(d==2){
+					salePrice=salePrice*0.9;
+				}
+				manager.addCarGasoline(basePrice, salePrice, brand, model, cylinderCapacity, mileage, type, plate, doorsNumber, typeWindows, carType, gasolineTankCapacity, typeGasoline, oilConsumeByKm,priceSoat,yearSoat,covergeAmount,imageDocSoat,priceTM,yearTM,gasLevels,imageDocTM,priceTP,yearTP,owner,imageDocTP);
 
 
 
@@ -191,8 +309,10 @@ public class Main {
 
 				System.out.println("Please select the battery duration of the vehicle by km");
 				batteryDuration=sc.nextDouble();
+				sc.nextLine();
 				System.out.println("Please select the charger type of the vehicle \n 1.) fast \n 2.) normal ");
 				int d3=sc.nextInt();		
+				sc.nextLine();
 
 				if(d3==1){
 					chargerType="Fast";
@@ -204,8 +324,18 @@ public class Main {
 				}
 				System.out.println("Please select the battery duration of the vehicle by km");
 				batteryDuration=sc.nextDouble();
-				manager.addCarElectric(basePrice, salePrice, brand, model, cylinderCapacity, mileage, type, plate, doorsNumber, typeWindows, carType, chargerType, batteryDuration,batteryConsumption);
+				sc.nextLine();
+								
+				salePrice=salePrice*1.20;
+				
+				if(d==2){
+					salePrice=salePrice*0.9;
+				}
+				
+				manager.addCarElectric(basePrice, salePrice, brand, model, cylinderCapacity, mileage, type, plate, doorsNumber, typeWindows, carType, chargerType, batteryDuration,batteryConsumption,priceSoat,yearSoat,covergeAmount,imageDocSoat,priceTM,yearTM,gasLevels,imageDocTM,priceTP,yearTP,owner,imageDocTP);
 			
+
+
 			}if(d1==3){// HYBRID CAR
 				//GASOLINE ATRIBUTES
 				double gasolineTankCapacity;
@@ -218,6 +348,7 @@ public class Main {
 
 				System.out.println("Please select the type of gasoline capacity of the vehicle ");
 				gasolineTankCapacity=sc.nextDouble();
+				sc.nextLine();
 				System.out.println("Please select the type of gasoline of the vehicle \n 1.)Extra \n 2.) Regular \n 3.) diesel");
 				int d2=sc.nextInt();
 				if(d2==1){
@@ -232,6 +363,7 @@ public class Main {
 				// ELECTRIC
 				System.out.println("Please select the battery duration of the vehicle by km");
 				batteryDuration=sc.nextDouble();				
+				sc.nextLine();
 				System.out.println("Please select the charger type of the vehicle \n 1.) fast \n 2.) normal ");
 				int d3=sc.nextInt();		
 				if(d3==1){
@@ -241,8 +373,14 @@ public class Main {
 					chargerType="Normal";
 					batteryConsumption=(batteryDuration+7)*(cylinderCapacity/200);
 				}
-	
-				manager.addCarHybrid(basePrice, salePrice, brand, model, cylinderCapacity, mileage, type, plate, doorsNumber, typeWindows, carType, gasolineTankCapacity, typeGasoline, oilConsumeByKm, chargerType, batteryDuration,batteryConsumption);			
+				
+				salePrice=salePrice*1.15;
+
+				if(d==2){
+					salePrice=salePrice*0.9;
+				}	
+				manager.addCarHybrid(basePrice, salePrice, brand, model, cylinderCapacity, mileage, type, plate, doorsNumber, typeWindows, carType, gasolineTankCapacity, typeGasoline, oilConsumeByKm, chargerType, batteryDuration,batteryConsumption,priceSoat,yearSoat,covergeAmount,imageDocSoat,priceTM,yearTM,gasLevels,imageDocTM,priceTP,yearTP,owner,imageDocTP);			
+
 			}
 
 
@@ -251,7 +389,7 @@ public class Main {
 
 	}
 
-	private void registerMotorcycle() {
+	public void registerMotorcycle() {
 
 		double basePrice;
 		double salePrice;
@@ -265,13 +403,31 @@ public class Main {
 		double gasolineCapacity;
 		double oilConsume;
 		String MotoType="";
+		//DOCUMENTS ATRIBUTE
+		// SOAT
+		double priceSoat;
+		int yearSoat;	
+		double covergeAmount;
+		String imageDocSoat;
+		//TECNOMECANICA 
+		double priceTM;
+		int yearTM;			
+		double gasLevels;
+		String imageDocTM;
+		//TARJETA DE PROPIEDAD
+		double priceTP;
+		int yearTP;		
+		String owner;			
+		String imageDocTP;
 
 		System.out.println("Registring the motorcycle ....");
 
 		System.out.println("Please select  the base price of the vehicle");
 		basePrice=sc.nextInt();
+		sc.nextLine();
 		System.out.println("Please select  the sale price of the motorcycle");
 		salePrice=sc.nextInt();
+		sc.nextLine();
 		System.out.println("Please select  the brand of the motorcycle");
 		brand=sc.nextLine();
 		System.out.println("Please select the model of the motorcycle");
@@ -282,17 +438,7 @@ public class Main {
 		cylinderCapacity=sc.nextDouble();	
 		System.out.println("Please select the milage of the vehicle");
 		mileage=sc.nextDouble();				
-		System.out.println("Please select the type of the motorcycle\n 1.) new \n2.) used ");
-		int d1=sc.nextInt();	
-		if(d1==1){ // MANDO LOS DATOS DE LOS VEHICULOS CUANDO SON NUEVOS
-			type="New vehicle";
-			plate="EMPTY PLATE";
-
-		}else{ // LOS DATOS CUANDO ES UN VEHICULO DE SEGUNDA
-			type="Used vehicle";
-			System.out.println("Please select the plate of the vehicle");
-			plate=sc.nextLine();					
-		}
+		
 		System.out.println("Please select the gasoline Capacity of the motorcycle");
 		gasolineCapacity=sc.nextDouble();		
 		System.out.println("The oil consume by km it's being calculated \n");
@@ -308,10 +454,174 @@ public class Main {
 		}if(d2==4){
 			MotoType="Cross";
 		}
-		
 
-		manager.addMotorcycle(basePrice, salePrice, brand, model, cylinderCapacity, mileage, type, plate, gasolineCapacity, oilConsume, MotoType);
+		System.out.println("Please select the type of the vehicle \n 1.) new \n 2.) used ");
+		int d=sc.nextInt();	
+		if(d==1){ // MANDO LOS DATOS DE LOS VEHICULOS CUANDO SON NUEVOS
+			plate="Empty plate";
+			type="NEW";
+			// SOAT EMPTY
+			priceSoat=0;
+			yearSoat=0;	
+			covergeAmount=0;
+			imageDocSoat ="";
+
+			//TECNOMECANICA PREGUNTAR
+
+			System.out.println("Please select the mechanical technical price");
+			priceTM=sc.nextDouble();	
+			System.out.println("Please select the year of the tecno");
+			yearTM=sc.nextInt();
+			System.out.println("Please select the gas level of the vehicule");
+			gasLevels=sc.nextDouble();	
+			System.out.println("The Soat number it's going to be aleatory");
+			imageDocTM=manager.TMGenerator();
+
+			//TARJETA DE PROPIEDAD VACIA 
+			priceTP=0;
+			yearTP=0;		
+			owner="";	
+			imageDocTP="";
+			
+			salePrice=salePrice*1.04;
+
+			if(yearTM<2022){
+
+				salePrice += 500000;
+			}else{
+				salePrice += 0;
+			}	
+
+
+
+		}else{ // LOS DATOS CUANDO ES UN VEHICULO DE SEGUNDA
+
+			System.out.println("Please select the plate of the vehicle");
+			plate=sc.nextLine();					
+			type="USED";
+
+			// EL VEHICULO TIENE SOAT
+			System.out.println("Please select the vehicule price");
+			priceSoat=sc.nextDouble();	
+			System.out.println("Please select the year of the soat");
+			yearSoat=sc.nextInt();
+			System.out.println("Please select the coverage amount of the soat");
+			covergeAmount=sc.nextDouble();		
+			System.out.println("The Soat number it's going to be aleatory");
+			imageDocSoat=manager.soatGenerator();
+
+
+			
+			// EL VEHICULO TIENE TECNOMECANICA 
+			System.out.println("Please select the mechanical technical price");
+			priceTM=sc.nextDouble();	
+			System.out.println("Please select the year of the tecno");
+			yearTM=sc.nextInt();
+			System.out.println("Please select the gas level of the vehicule");
+			gasLevels=sc.nextDouble();	
+			System.out.println("The mechanical Technical number it's going to be aleatory");
+			imageDocTM=manager.TMGenerator();
+
+			//TARJETA DE PROPIEDAD DEL VEHICULO
+			System.out.println("Please select the price of the property card");
+			priceTP=sc.nextDouble();
+			System.out.println("Please select the year of the property card");
+			yearTP=sc.nextInt();			
+			System.out.println("Please select the name of the owner of the property card");
+			owner=sc.nextLine();
+			System.out.println("The Property Card number it's going to be aleatory");
+			imageDocTP=manager.TMGenerator();				
+
+			salePrice=salePrice*0.98;
+
+			if(yearTM<2022){
+				salePrice += 500000;
+			}
+			if(yearSoat<2022){
+				salePrice += 500000;
+			}
+
+
+		}
+	
+
+		manager.addMotorcycle(basePrice, salePrice, brand, model, cylinderCapacity, mileage, type, plate, gasolineCapacity, oilConsume, MotoType,priceSoat,yearSoat,covergeAmount,imageDocSoat,priceTM,yearTM,gasLevels,imageDocTM,priceTP,yearTP,owner,imageDocTP);
 	}
 
-	
+	public void calculatePrice(){
+		System.out.println("Let's calculate the vehicle price....");
+		System.out.println("Please take a look of all the vehicles we have");
+		System.out.println(manager.showVehicles());
+
+		System.out.println("Please select the brand of the vehicle you want to calculate the price");
+		String brand=sc.nextLine();
+		sc.nextLine();
+		System.out.println("Please select the model of the vehicle you want to calculate the price");
+		int model=sc.nextInt();
+		sc.nextLine();
+		System.out.println("Please select the cylinder of the vehicle you want to calculate the price");
+		double cylinder=sc.nextDouble();
+
+		System.out.println(manager.calculatePrice(brand,model,cylinder));
+	}
+
+	public void reportVehicles(){
+		System.out.println("Please chose the type of report you wish. \n 1.) Type of vehicle \n 2.) Type of gasoline \n 3.) New or used");
+		int decision= sc.nextInt();
+		switch (decision){
+			case 1:
+				System.out.println("Please select the type of vehicle \n 1.) Car \n 2.) Motorcycle");
+				int d1=sc.nextInt();
+					switch(d1){
+						case 1:// REPORTE DE TODOS LOS CARROS
+							//reportCars();
+							break;
+						case 2: // REPORTE DE TODAS LAS MOTOS
+							//reportMotorcycle;
+							break;
+					}
+				break;
+			case 2:
+				System.out.println("Please select the type of gasoline \n 1.) Gasoline \n 2.) Electric \n 3.) Hybrid");
+				int d2=sc.nextInt();
+				switch(d2){
+					case 1:
+					//	reportGasoline();
+						break;
+					case 2:
+						//reportElectric();
+						break;
+					case 3:
+						//reportHybrid();
+						break;
+				}	
+				break;	
+			case 3:
+			System.out.println("Please select the type  \n 1.) new \n 2.) used \n ");
+			int d3=sc.nextInt();
+			switch(d3){
+				case 1:
+				//	reportNew();
+					break;
+				case 2:
+					//reportUsed();
+					break;
+				}				
+			break;
+					
+
+
+
+
+
+		}
+	}
+
+
+
+
+
+
+
+
 }
