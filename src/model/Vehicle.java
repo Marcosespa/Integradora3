@@ -16,8 +16,8 @@ public abstract class Vehicle{
 	private Soat soat;
 	private MechanicalTechnical mechanicalTechnical;
 	private PropertyCard propertyCard;
-    public static final int DOCS = 2;
-    private Document [] docs =  new Document [DOCS];
+    public static final int DOCS = 3;
+    private Document [] docs ;
 
 
 
@@ -33,45 +33,31 @@ public abstract class Vehicle{
 		this.soat=soat;
 		this.mechanicalTechnical=mechanicalTechnical;
 		this.propertyCard=propertyCard;
+		docs = new Document[DOCS];
 
 	}
 
 
 
 	
-/** 	
- 	public int getEmptyPositionDocuments(){	// EMPTY POSITION DOCUMENTS 
-        boolean emptyPosition = false;
-		int position = -1;
-		for (int i=0; i<MAX && !emptyPosition; i++){
-			if(documents[i] == null){
-				emptyPosition = true;
-				position = i;
-			}
-		}
-		return position;
+    public String getType() {
+        return type;
+    }
+    public void setType(String type) {
+        this.type = type;
     }
 
-	public String addSoat(String name, String scientificName, String migratoryType, String type) {
-		String out = "";		
-		int emptyPos=getEmptyPositionSpecies(); //busco la primera posición vacía
-		// si el arreglo está lleno?
-		out = "Entra al metodo";
-		if(emptyPos == -1){ // está lleno
-			//no se puede agregar
-			out = "El arreglo está lleno";
-		}else{ //Si no está lleno
 
-			species[emptyPos]= new Species(name, scientificName, migratoryType, type); 
-			out = "El registro fue exitoso";
-		}
-		return out;
-	}	
-*/
+
     public void addDocumentS(Soat document) {
         docs[0]= document;
-        //return "Registro Exitoso";
     }
+    public void addDocumentM(MechanicalTechnical mechanicalTechnical){
+        docs[1]= mechanicalTechnical;
+    }
+    public void addDocumentTP(PropertyCard propertyCard){
+        docs[2]= propertyCard;
+    }    
 
     
 
@@ -81,10 +67,41 @@ public abstract class Vehicle{
                "Year: " + getModel() + "\n" +
                "Cylinder: " + getCylinderCapacity() + "\n" +
                "\n";
-    }     
+    }  
 
-    
+/**
+ * 	private double basePrice;
+	private double salePrice;
+	private String brand;
+	private int model;
+	private double cylinderCapacity;
+	private double mileage;
+	private String type; //Nuevo o usado
+	private String plate;
+ */
+    public String toStringBase(){
+        String out= "Base price: " + getBasePrice() + "\n" +
+        "Sale price: " + getSalePrice() + "\n" +
+        "Brand: " + getBrand() + "\n" +
+        "Model: " + getModel() + "\n" +
+        "Cylinder Capacity: " + getCylinderCapacity() + "\n" +
+        "Milage: " + getMileage() + "\n" +
+        "Type: " + getType() + "\n" ;
+        if(getType().equalsIgnoreCase("USED")){
+            out+="Plate: " + getPlate() + "\n";
+        }else{
+            out+="Plate: There's no plate\n";
+        }
 
+        return out;
+    }         
+    public String toStringGasoline(){
+        return "";}
+    public String toStringElectric(){
+        return "";}        
+    public String toStringHybrid(){
+        return "";}
+     
     /**
      * @return double return the basePrice
      */
@@ -224,7 +241,6 @@ public abstract class Vehicle{
     public void setPropertyCard(PropertyCard propertyCard) {
         this.propertyCard = propertyCard;
     }
-
     /**
      * @return Document [] return the docs
      */
@@ -238,6 +254,29 @@ public abstract class Vehicle{
     public void setDocs(Document [] docs) {
         this.docs = docs;
     }
+
+
+    public int getSoatYear(){
+        return soat.getYear();
+    }
+    public String getSoatString(){
+        return soat.toString();
+    }
+
+    public String getPropertyCardtImg(){
+        return propertyCard.getImageDoc();
+    }    
+
+
+    public int getMechanicalTechnicalYear(){
+        return mechanicalTechnical.getYear();
+    }      
+    public String getMechanicalTechnicalString(){
+        return mechanicalTechnical.toString();
+    }    
+
+    
+
 
 
 

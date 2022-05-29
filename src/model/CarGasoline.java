@@ -28,7 +28,54 @@ public class CarGasoline extends Vehicle{
 
 	}
 
+	/**
+	 * 	private int doorsNumber;
+	private String typeWindows;
+	private String carType;
+	//Gasoline Atributes
+	private double gasolineTankCapacity;
+	private String typeGasoline;
+	private double oilConsumeByKm;
+	 * @return
+	 */
+    public String toStringGasoline(){
+        String out= "Base price: " + getBasePrice() + "\n" +
+        "Sale price: " + getSalePrice() + "\n" +
+        "Brand: " + getBrand() + "\n" +
+        "Model: " + getModel() + "\n" +
+        "Cylinder Capacity: " + getCylinderCapacity() + "\n" +
+		"Milage: " + getMileage() + "\n" +
+        "Type: " + getType() + "\n" ;
+        if(getType().equalsIgnoreCase("USED")){
+            out+="Plate: " + getPlate() + "\n";
+        }else{
+            out+="Plate: There's no plate\n";
+		}
+		out+= "Doors Number: " + doorsNumber + "\n" +
+        "Type Windows: " + typeWindows + "\n" +
+        "Car Type: " + carType + "\n" +
+        "Gasoline Tank Capacity: " + gasolineTankCapacity + "\n" +
+        "Type Gasoline: " + typeGasoline + "\n" +
+		"Oil consume: " + oilConsumeByKm + "\n" +
+        "\n" ;		
 
+		return out;
+	}
+    public String toStringBase(){
+        String out= "Base price: " + getBasePrice() + "\n" +
+        "Sale price: " + getSalePrice() + "\n" +
+        "Brand: " + getBrand() + "\n" +
+        "Model: " + getModel() + "\n" +
+        "Cylinder Capacity: " + getCylinderCapacity() + "\n" +
+        "Milage: " + getMileage() + "\n" +
+        "Type: " + getType() + "\n" ;
+        if(getType().equalsIgnoreCase("USED")){
+            out+="Plate: " + getPlate() + "\n";
+        }else{
+            out+="Plate: There's no plate\n";
+        }
+        return out;
+    }    
 
     
 }

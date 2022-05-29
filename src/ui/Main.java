@@ -17,7 +17,7 @@ public class Main {
 	
 	public Main(){
 		sc= new Scanner(System.in);
-		//calculator = new MatrixCalculator();
+		manager = new ConcessionaireManager();
 	}
 
 	public static void main(String[] args) {
@@ -41,8 +41,8 @@ public class Main {
 		System.out.println(
 				"Main menu, please pick an option\n" +
 				"(1) Register vehicles (new or used) for sale. \n" +
-				"(2) Show the contents of all matrices \n"+
-				"(3) Numeric matrices\n"+
+				"(2) Select a vehicule for sale \n"+
+				"(3) Show all the vehicules \n"+
 				"(4) String matrices\n" +  
 				"(0) To leave the application"
 				);
@@ -189,8 +189,9 @@ public class Main {
 				System.out.println("Please select the gas level of the vehicule");
 				gasLevels=sc.nextDouble();	
 				sc.nextLine();
-				System.out.println("The Soat number it's going to be aleatory");
+				System.out.println("The Mechanical technical number it's going to be aleatory");
 				imageDocTM=manager.TMGenerator();
+				System.out.println("The Mechanical technical number it's :"+ imageDocTM);
 				sc.nextLine();
 
 				//TARJETA DE PROPIEDAD VACIA 
@@ -215,7 +216,7 @@ public class Main {
 				type="USED";
 
 				// EL VEHICULO TIENE SOAT
-				System.out.println("Please select the vehicule price");
+				System.out.println("Please select the Soat price");
 				priceSoat=sc.nextDouble();	
 				sc.nextLine();
 				System.out.println("Please select the year of the soat");
@@ -226,6 +227,8 @@ public class Main {
 				sc.nextLine();
 				System.out.println("The Soat number it's going to be aleatory");
 				imageDocSoat=manager.soatGenerator();
+				System.out.println("The Soat number it's :"+ imageDocSoat);
+
 				sc.nextLine();
 
 
@@ -242,6 +245,7 @@ public class Main {
 				sc.nextLine();
 				System.out.println("The mechanical Technical number it's going to be aleatory");
 				imageDocTM=manager.TMGenerator();
+				System.out.println("The Mechanical technical number it's :"+ imageDocTM);
 				sc.nextLine();
 
 				//TARJETA DE PROPIEDAD DEL VEHICULO
@@ -255,7 +259,9 @@ public class Main {
 				owner=sc.nextLine();
 				sc.nextLine();
 				System.out.println("The Property Card number it's going to be aleatory");
-				imageDocTP=manager.TMGenerator();				
+				imageDocTP=manager.TMGenerator();	
+				System.out.println("The Property card number it's :"+ imageDocTP);
+
 				sc.nextLine();
 
                 if(yearTM<2022){
@@ -476,6 +482,7 @@ public class Main {
 			gasLevels=sc.nextDouble();	
 			System.out.println("The Soat number it's going to be aleatory");
 			imageDocTM=manager.TMGenerator();
+			
 
 			//TARJETA DE PROPIEDAD VACIA 
 			priceTP=0;
@@ -574,10 +581,11 @@ public class Main {
 				int d1=sc.nextInt();
 					switch(d1){
 						case 1:// REPORTE DE TODOS LOS CARROS
-							//reportCars();
+							System.out.println(manager.reportCars());
+								
 							break;
 						case 2: // REPORTE DE TODAS LAS MOTOS
-							//reportMotorcycle;
+							System.out.println(manager.reportMotorcycle());
 							break;
 					}
 				break;
@@ -586,25 +594,25 @@ public class Main {
 				int d2=sc.nextInt();
 				switch(d2){
 					case 1:
-					//	reportGasoline();
+							System.out.println(manager.reportCarsGasoline());
 						break;
 					case 2:
-						//reportElectric();
+						System.out.println(manager.reportCarsElectric());
 						break;
 					case 3:
-						//reportHybrid();
+						System.out.println(manager.reportCarsHybrid());
 						break;
 				}	
 				break;	
 			case 3:
-			System.out.println("Please select the type  \n 1.) new \n 2.) used \n ");
-			int d3=sc.nextInt();
-			switch(d3){
-				case 1:
-				//	reportNew();
+				System.out.println("Please select the type  \n 1.) new \n 2.) used \n ");
+				int d3=sc.nextInt();
+				switch(d3){
+					case 1:
+						System.out.println(manager.reportVehicleNew());
 					break;
-				case 2:
-					//reportUsed();
+					case 2:
+						System.out.println(manager.reportVehicleUsed()());
 					break;
 				}				
 			break;
@@ -617,7 +625,21 @@ public class Main {
 		}
 	}
 
+	public void reportDocuments(){
+		System.out.println("Let's see the documents of the vehicle ....");
+		System.out.println("Please take a look of all the vehicles we have");
+		System.out.println(manager.showVehicles());
 
+		System.out.println("Please select the brand of the vehicle you want to know the documents");
+		String brand=sc.nextLine();
+		sc.nextLine();
+		System.out.println("Please select the model of the vehicle you want to calculate the price");
+		int model=sc.nextInt();
+		sc.nextLine();
+		System.out.println("Please select the cylinder of the vehicle you want to calculate the price");
+		double cylinder=sc.nextDouble();
+		System.out.println(manager.reportDocuments(brand,model,cylinder));
+	}
 
 
 

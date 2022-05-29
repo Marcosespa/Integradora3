@@ -61,25 +61,6 @@ public abstract class Document{
     }
 
 
-/** 
-    public void RandomMatrix(){
-        for (int i=0; i< documentMatriz.length; i++ ) { // filas numbers.length
-            for (int j = 0; j < documentMatriz.length; j++) { //columnas numbers[0].length					
-                int a = (int)(Math.random()*(100-1+1)+1); // NUMERO DEL 0 AL 99 				
-                documentMatriz[i][j] = a;
-            }
-        }	
-
-    }
-
-    public void recorridoL() {
-        for (int i=0; i< documentMatriz.length; i++ ) { 
-
-        }
-
-    }
-*/
-
 
 
 }

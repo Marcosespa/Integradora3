@@ -6,7 +6,6 @@ import java.util.Iterator;
 import javax.net.ssl.SSLSocket;
 
 public class ConcessionaireManager {
-	private String title;
 
 	private ArrayList<Vehicle> vehicles;
 	public static final int r=4;
@@ -18,22 +17,22 @@ public class ConcessionaireManager {
 
 
 
-	public ConcessionaireManager(String title) {
-		this.title = title;
+	public ConcessionaireManager() {
 		vehicles= new ArrayList<Vehicle>();	
-		dSoat = new int [r][c];
-        dMechanicalTechnical = new int [r][c];		
-        dPropertyCard = new int [r][c];		
+		//dSoat = new int [r][c];
+        //dMechanicalTechnical = new int [r][c];		
+        //dPropertyCard = new int [r][c];		
 
 	}
 
-
+/** 
+ * 
     public void randomNumberSoat(){
 		for(int i=0;i<c;i++){
 				for (int j=0;j<r;j++){
 		            dSoat[i][j] = (int)(Math.random()*(100-1+1)+1);
 		    }
-		  }
+		}
 	}
     public void randomNumberMechanicalTechnical(){
 		for(int i=0;i<c;i++){
@@ -50,10 +49,17 @@ public class ConcessionaireManager {
 		  }
 	}		
 
+*/	
+
 
 	public String soatGenerator(){
 		String out="";
-		randomNumberSoat();
+		//randomNumberSoat();
+		for(int i=0;i<c;i++){
+			for (int j=0;j<r;j++){
+				dSoat[i][j] = (int)(Math.random()*(10-1+1)+1);
+		}
+		}		
 
 		for(int i=0;i<r;i++){
 			for(int j=0;j<c;j++){
@@ -87,8 +93,11 @@ public class ConcessionaireManager {
 	}
 	public String TMGenerator(){
 		String out="";
-		randomNumberMechanicalTechnical();
-
+		for(int i=0;i<c;i++){
+			for (int j=0;j<r;j++){
+				dMechanicalTechnical[i][j] = (int)(Math.random()*(10-1+1)+1);
+		}
+		}	
 		for(int i=0;i<r;i++){
             for(int j=0;j<c;j++){
 
@@ -131,8 +140,11 @@ public class ConcessionaireManager {
 	}
 	public String TPGenerator(){
 		String out="";
-		randomNumberPropertyCard();	
-
+		for(int i=0;i<c;i++){
+			for (int j=0;j<r;j++){
+				dPropertyCard[i][j] = (int)(Math.random()*(10-1+1)+1);
+		}
+		}	
 		for(int i=3;i>0;i--){
 			for(int j=3;j>0;j--){
 
@@ -223,10 +235,10 @@ public class ConcessionaireManager {
 	public String calculatePrice(String brand, int model, double cylinder){
 		String out ="";
         for(int i = 0; i < vehicles.size(); i++) {
-			if(vehicles.get(i).getBrand().equalsIgnoreCase(brand) && vehicles.get(i).getModel()==model && vehicles.get(i).getCylinderCapacity()==cylinder ){
-				out+="The vehicle has a price of "+ (vehicles.get(i).getSalePrice());
-			}
 			out+="There's no record of that vehicle in the store";
+			if(vehicles.get(i).getBrand().equalsIgnoreCase(brand) && vehicles.get(i).getModel()==model && vehicles.get(i).getCylinderCapacity()==cylinder ){
+				out="The vehicle has a price of "+ (vehicles.get(i).getSalePrice());
+			}
         }		
 		return out;
 	}
@@ -234,8 +246,7 @@ public class ConcessionaireManager {
 		String out="";
         for(int i = 0; i < vehicles.size(); i++) {
             out+= (vehicles.get(i).toStringSells());			
-        }	
-				
+        }			
 		return out;
 	}
     
@@ -246,13 +257,121 @@ public class ConcessionaireManager {
 		String out="";
 		
 		for (int i=0;i<vehicles.size();i++){
+
+			if (vehicles.get(i) instanceof CarGasoline){
+				out+= vehicles.get(i).toStringBase();
+			}
+			if (vehicles.get(i) instanceof CarElectric){
+				out+= vehicles.get(i).toStringBase();
+			}	
+			if (vehicles.get(i) instanceof CarHybird){
+				out+= vehicles.get(i).toStringBase();
+			}			
+
+		}
+		return out;
+	}
+	public String reportMotorcycle(){ // REPORTE DE TODAS LAS MOTOS
+		String out="";
+		
+		for (int i=0;i<vehicles.size();i++){
 			if (vehicles.get(i) instanceof Motorcycle){
 				out+= vehicles.get(i).toString();
 			}
 		}
 
 		return out;
+	}	
+
+	public String reportCarsGasoline(){ // REPORTE DE TODOS LOS CARROS GASOLINA
+		String out="";		
+		for (int i=0;i<vehicles.size();i++){
+			if (vehicles.get(i) instanceof CarGasoline){
+				out+= vehicles.get(i).toStringGasoline();
+			}
+		}
+		return out;
+	}	
+	public String reportCarsElectric(){ // REPORTE DE TODOS LOS CARROS ELECTRICOS
+		String out="";		
+		for (int i=0;i<vehicles.size();i++){
+			if (vehicles.get(i) instanceof CarElectric){
+				out+= vehicles.get(i).toStringElectric();
+			}
+		}
+		return out;
+	}	
+	public String reportCarsHybrid(){ // REPORTE DE TODOS LOS CARROS HIBRIDOS
+		String out="";		
+		for (int i=0;i<vehicles.size();i++){
+			if (vehicles.get(i) instanceof CarHybird){
+				out+= vehicles.get(i).toStringHybrid();
+			}
+		}
+		return out;
+	}		
+
+
+	public String reportVehicleNew(){ // REPORTE DE TODOS LOS CARROS NUEVOS 
+		String out="";
+		
+		for (int i=0;i<vehicles.size();i++){
+			if (vehicles.get(i).getType().equalsIgnoreCase("NEW")){
+				out+= vehicles.get(i).toString();
+			}
+		}
+
+		return out;
+	}	
+	public String reportVehicleUsed(){ // REPORTE DE TODOS LOS CARROS USADOS 
+		String out="";
+		
+		for (int i=0;i<vehicles.size();i++){
+			if (vehicles.get(i).getType().equalsIgnoreCase("USED")){
+				out+= vehicles.get(i).toString();
+			}
+		}
+
+		return out;
+	}		
+	public String reportDocuments(String brand, int model, double cylinder){
+		String out ="";
+        for(int i = 0; i < vehicles.size(); i++) {
+			out+="There's no record of that vehicle in the store";
+			if(vehicles.get(i).getBrand().equalsIgnoreCase(brand) && vehicles.get(i).getModel()==model && vehicles.get(i).getCylinderCapacity()==cylinder ){
+				
+				if (vehicles.get(i).getPropertyCardtImg().equalsIgnoreCase("")){
+					out+= "Does not have property card";
+				}else {
+					out+= "The property card code is:" + vehicles.get(i).getPropertyCardtImg() + "\n";			
+				}
+				
+				if (vehicles.get(i).getSoatYear()==2022){
+					out += "\nSOAT valid" + "\n" +
+					vehicles.get(i).getSoatString();	
+				}if (vehicles.get(i).getSoatYear()<=2021){
+					out += "\nSOAT expired" + "\n" + 
+					vehicles.get(i).getSoatString();
+				}else{
+					out += "\nThere is no SOAT registred" + "\n" ;}
+
+				if (vehicles.get(i).getMechanicalTechnicalYear()==2022){
+					out += "\nRevision Mechanical Technical valid" + "\n" +
+					vehicles.get(i).getMechanicalTechnicalString() + "\n";		
+				}
+				if (vehicles.get(i).getMechanicalTechnicalYear()<=2021){
+					out += "\nRevision Mechanical Technical expired" + "\n" +
+					vehicles.get(i).getMechanicalTechnicalString() + "\n";	
+				}else{
+					out += "\nThere is no  Mechanical Technical registred" + "\n" ;}			
+				
+				out="The vehicle has a price of "+ (vehicles.get(i).getSalePrice());
+			}
+        }		
+		return out;
+	}		
 	}
+
 
 }
 	

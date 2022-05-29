@@ -26,7 +26,44 @@ public class CarElectric extends Vehicle{
 		this.batteryConsumption=batteryConsumption;
 
 	}
+    public String toStringHybrid(){
+        String out= "Base price: " + getBasePrice() + "\n" +
+        "Sale price: " + getSalePrice() + "\n" +
+        "Brand: " + getBrand() + "\n" +
+        "Model: " + getModel() + "\n" +
+        "Cylinder Capacity: " + getCylinderCapacity() + "\n" +
+		"Milage: " + getMileage() + "\n" +
+        "Type: " + getType() + "\n" ;
+        if(getType().equalsIgnoreCase("USED")){
+            out+="Plate: " + getPlate() + "\n";
+        }else{
+            out+="Plate: There's no plate\n";
+		}
+		out+= "Doors Number: " + doorsNumber + "\n" +
+        "Type Windows: " + typeWindows + "\n" +
+        "Car Type: " + carType + "\n" +
+        "Charger Type: " + chargerType + "\n" +
+        "Battery Duration: " + batteryConsumption + "\n" +
+		"Battery consumption: " + batteryConsumption + "\n" +
+        "\n" ;		
 
+		return out;
+	}
+    public String toStringBase(){
+        String out= "Base price: " + getBasePrice() + "\n" +
+        "Sale price: " + getSalePrice() + "\n" +
+        "Brand: " + getBrand() + "\n" +
+        "Model: " + getModel() + "\n" +
+        "Cylinder Capacity: " + getCylinderCapacity() + "\n" +
+        "Milage: " + getMileage() + "\n" +
+        "Type: " + getType() + "\n" ;
+        if(getType().equalsIgnoreCase("USED")){
+            out+="Plate: " + getPlate() + "\n";
+        }else{
+            out+="Plate: There's no plate\n";
+        }
+        return out;
+    }    
 
 
     
