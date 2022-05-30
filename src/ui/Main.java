@@ -43,7 +43,9 @@ public class Main {
 				"(1) Register vehicles (new or used) for sale. \n" +
 				"(2) Select a vehicule for sale \n"+
 				"(3) Show all the vehicules \n"+
-				"(4) String matrices\n" +  
+				"(4) Report documents\n" +  
+				"(5) Print parking map\n" +  
+				"(6) Parkin report\n" +  
 				"(0) To leave the application"
 				);
 		option= sc.nextInt();
@@ -67,10 +69,15 @@ public class Main {
 			reportVehicles();
 			break;
 
-		case 4:
-			
+		case 4:	
+			reportDocuments();		
 			break;
-		
+		case 5:	
+			parkingMap();
+			break;		
+		case 6:	
+			parkingReport();
+			break;			
 		default:
 			System.out.println("Error, wrong option");
 		
@@ -612,7 +619,7 @@ public class Main {
 						System.out.println(manager.reportVehicleNew());
 					break;
 					case 2:
-						System.out.println(manager.reportVehicleUsed()());
+						System.out.println(manager.reportVehicleUsed());
 					break;
 				}				
 			break;
@@ -642,8 +649,34 @@ public class Main {
 	}
 
 
+	public void parkingMap(){
+		System.out.println("Generating the parking Map....");
+		System.out.println(manager.parkingMap());
+	}
 
+	public void parkingReport(){
+		System.out.println("The report of the parking lot it's\n "+
+		"1.)List of vehicles in a range of years \n"+
+		"2.)Data of the oldest and newest vehicle \n "+
+		"3.)Percentage of occupation of the parking lot. ");
+		int d=sc.nextInt();
 
+		switch(d) {
+			case 1:
+				System.out.println(manager.reportRangeYears());
+				break;
+			case 2:
+				registerVehicle();
+				break;
+		
+			case 3:
+				registerVehicle();
+				break;	
 
+			default:
+				System.out.println("Error, wrong option");
+			}
+
+	}
 
 }

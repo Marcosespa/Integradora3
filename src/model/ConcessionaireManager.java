@@ -11,9 +11,15 @@ public class ConcessionaireManager {
 	public static final int r=4;
 	public static final int c=4;
 
+
     private int [][] dSoat = new int [r][c];
     private int [][] dMechanicalTechnical = new int [r][c];
     private int [][] dPropertyCard = new int [r][c];
+
+	private int [][] map;
+	private Vehicle[][] parking;
+	public static final int c1=5;
+	public static final int f1=10;
 
 
 
@@ -21,7 +27,9 @@ public class ConcessionaireManager {
 		vehicles= new ArrayList<Vehicle>();	
 		//dSoat = new int [r][c];
         //dMechanicalTechnical = new int [r][c];		
-        //dPropertyCard = new int [r][c];		
+        //dPropertyCard = new int [r][c];	
+        map = new int[f1][c1];	
+		parking = new Vehicle[f1][c1];		
 
 	}
 
@@ -186,7 +194,35 @@ public class ConcessionaireManager {
 		Soat soat= new Soat(priceSoat, yearSoat,imageDocSoat,covergeAmount);
 		MechanicalTechnical mechanicalTechnical = new MechanicalTechnical(priceTM, yearTM,imageDocTM,gasLevels);
 		PropertyCard propertyCard = new PropertyCard(priceTP, yearTP,imageDocTP, owner);
-		this.vehicles.add(new CarGasoline(basePrice,salePrice,brand, model,cylinderCapacity,mileage,type,plate,soat, mechanicalTechnical,propertyCard,doorsNumber,typeWindows,carType, gasolineTankCapacity, typeGasoline, oilConsumeByKm));	
+		CarGasoline cg=new CarGasoline(basePrice,salePrice,brand, model,cylinderCapacity,mileage,type,plate,soat, mechanicalTechnical,propertyCard,doorsNumber,typeWindows,carType, gasolineTankCapacity, typeGasoline, oilConsumeByKm);	
+		vehicles.add(cg);
+
+		if(type=="USED"&& model<2015){
+			for(int i=0;i<f1;i++){
+				for(int j=0;j<c1;j++){		
+					if(model==2014&&j==0 && parking[i][j] == null){
+						map[i][j]=1;
+						parking[i][j]=cg;
+					}
+                	if(model==2013&&j==1 && parking[i][j] == null){
+						map[i][j]=1;
+						parking[i][j]=cg;
+					}
+					if(model==2012&&j==2 && parking[i][j] == null){
+						map[i][j]=1;
+						parking[i][j]=cg;					
+					}
+					if(model==2011&&j==3 && parking[i][j] == null){
+						map[i][j]=1;
+						parking[i][j]=cg;							
+					}
+					if(model<2011&&j==4 && parking[i][j] == null){
+						map[i][j]=1;
+						parking[i][j]=cg;	
+					}
+				}
+			}						
+		}
 	}
 	public void addCarElectric(double basePrice, double salePrice, String brand,int model, double cylinderCapacity,
 	double mileage,String type,String plate, int doorsNumber, String typeWindows, String carType, String chargerType,
@@ -196,8 +232,36 @@ public class ConcessionaireManager {
 		Soat soat= new Soat(priceSoat, yearSoat,imageDocSoat,covergeAmount);
 		MechanicalTechnical mechanicalTechnical = new MechanicalTechnical(priceTM, yearTM,imageDocTM,gasLevels);
 		PropertyCard propertyCard = new PropertyCard(priceTP, yearTP,imageDocTP, owner);
-
-		this.vehicles.add(new CarElectric(basePrice,salePrice,brand, model,cylinderCapacity,mileage,type,plate,soat, mechanicalTechnical,propertyCard,doorsNumber,typeWindows,carType, chargerType, batteryDuration,batteryConsumption));
+		CarElectric Ce=new CarElectric(basePrice,salePrice,brand, model,cylinderCapacity,mileage,type,plate,soat, mechanicalTechnical,propertyCard,doorsNumber,typeWindows,carType, chargerType, batteryDuration,batteryConsumption);
+		vehicles.add(Ce);
+		if(type=="USED"&& model<2015){
+			for(int i=0;i<f1;i++){
+				for(int j=0;j<c1;j++){		
+					if(model==2014&&j==0 && parking[i][j] == null){
+						map[i][j]=1;
+						parking[i][j]=Ce;
+					}
+                	if(model==2013&&j==1 && parking[i][j] == null){
+						map[i][j]=1;
+						parking[i][j]=Ce;
+					}
+					if(model==2012&&j==2 && parking[i][j] == null){
+						map[i][j]=1;
+						parking[i][j]=Ce;					
+					}
+					if(model==2011&&j==3 && parking[i][j] == null){
+						map[i][j]=1;
+						parking[i][j]=Ce;							
+					}
+					if(model<2011&&j==4 && parking[i][j] == null){
+						map[i][j]=1;
+						parking[i][j]=Ce;	
+					}
+				}
+			}						
+		}		
+	
+	
 	}
 	public void addCarHybrid(double basePrice, double salePrice, String brand,int model, double cylinderCapacity,
 	 double mileage,String type,String plate, int doorsNumber, String typeWindows, String carType, double gasolineTankCapacity,
@@ -208,9 +272,34 @@ public class ConcessionaireManager {
 		MechanicalTechnical mechanicalTechnical = new MechanicalTechnical(priceTM, yearTM,imageDocTM,gasLevels);
 		PropertyCard propertyCard = new PropertyCard(priceTP, yearTP,imageDocTP, owner);
 
-
-		this.vehicles.add(new CarHybird(basePrice,salePrice,brand, model,cylinderCapacity,mileage,type,plate,soat,mechanicalTechnical,propertyCard,doorsNumber,typeWindows,carType,gasolineTankCapacity, typeGasoline, oilConsumeByKm,chargerType, batteryDuration,batteryConsumption));
-	
+		CarHybird Ch=new CarHybird(basePrice,salePrice,brand, model,cylinderCapacity,mileage,type,plate,soat,mechanicalTechnical,propertyCard,doorsNumber,typeWindows,carType,gasolineTankCapacity, typeGasoline, oilConsumeByKm,chargerType, batteryDuration,batteryConsumption);
+		vehicles.add(Ch);
+		if(type=="USED"&& model<2015){
+			for(int i=0;i<f1;i++){
+				for(int j=0;j<c1;j++){		
+					if(model==2014&&j==0 && parking[i][j] == null){
+						map[i][j]=1;
+						parking[i][j]=Ch;
+					}
+                	if(model==2013&&j==1 && parking[i][j] == null){
+						map[i][j]=1;
+						parking[i][j]=Ch;
+					}
+					if(model==2012&&j==2 && parking[i][j] == null){
+						map[i][j]=1;
+						parking[i][j]=Ch;					
+					}
+					if(model==2011&&j==3 && parking[i][j] == null){
+						map[i][j]=1;
+						parking[i][j]=Ch;							
+					}
+					if(model<2011&&j==4 && parking[i][j] == null){
+						map[i][j]=1;
+						parking[i][j]=Ch;	
+					}
+				}
+			}						
+		}		
 	}
 
 
@@ -223,10 +312,34 @@ public class ConcessionaireManager {
 		Soat soat= new Soat(priceSoat, yearSoat,imageDocSoat,covergeAmount);
 		MechanicalTechnical mechanicalTechnical = new MechanicalTechnical(priceTM, yearTM,imageDocTM,gasLevels);
 		PropertyCard propertyCard = new PropertyCard(priceTP, yearTP,imageDocTP, owner);	
-		
-		this.vehicles.add(new Motorcycle(basePrice,salePrice,brand, model,cylinderCapacity,mileage,type,plate,soat, mechanicalTechnical,propertyCard, gasolineCapacity,oilConsume,MotoType));
-
-
+		Motorcycle Mt=new Motorcycle(basePrice,salePrice,brand, model,cylinderCapacity,mileage,type,plate,soat, mechanicalTechnical,propertyCard, gasolineCapacity,oilConsume,MotoType);
+		vehicles.add(Mt);
+		if(type=="USED"&& model<2015){
+			for(int i=0;i<f1;i++){
+				for(int j=0;j<c1;j++){		
+					if(model==2014&&j==0 && parking[i][j] == null){
+						map[i][j]=1;
+						parking[i][j]=Mt;
+					}
+                	if(model==2013&&j==1 && parking[i][j] == null){
+						map[i][j]=1;
+						parking[i][j]=Mt;
+					}
+					if(model==2012&&j==2 && parking[i][j] == null){
+						map[i][j]=1;
+						parking[i][j]=Mt;					
+					}
+					if(model==2011&&j==3 && parking[i][j] == null){
+						map[i][j]=1;
+						parking[i][j]=Mt;							
+					}
+					if(model<2011&&j==4 && parking[i][j] == null){
+						map[i][j]=1;
+						parking[i][j]=Mt;	
+					}
+				}
+			}						
+		}
 
 	}       
 
@@ -370,8 +483,24 @@ public class ConcessionaireManager {
         }		
 		return out;
 	}		
+	
+	//REQUERIMIENTO 5
+	public String parkingMap(){
+		String out="";
+		for (int i=0; i<f1; i++ ) { // filas numbers.length
+			for (int j=0; j <c1; j++) { //columnas numbers[0].length
+				out += map[i][j] + " ";
+			}
+			out += "\n";
+		}		
+		return null;
 	}
 
+	//REQUERIMEITNPO 6
+	public String reportRangeYears(){
+		return null;
+
+	}	
 
 }
 	
