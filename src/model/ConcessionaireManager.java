@@ -196,29 +196,35 @@ public class ConcessionaireManager {
 		PropertyCard propertyCard = new PropertyCard(priceTP, yearTP,imageDocTP, owner);
 		CarGasoline cg=new CarGasoline(basePrice,salePrice,brand, model,cylinderCapacity,mileage,type,plate,soat, mechanicalTechnical,propertyCard,doorsNumber,typeWindows,carType, gasolineTankCapacity, typeGasoline, oilConsumeByKm);	
 		vehicles.add(cg);
+		boolean flag=true;
 
 		if(type=="USED"&& model<2015){
 			for(int i=0;i<f1;i++){
 				for(int j=0;j<c1;j++){		
-					if(model==2014&&j==0 && parking[i][j] == null){
+					if(model==2014&&j==0 && parking[i][j] == null && flag==true){
 						map[i][j]=1;
 						parking[i][j]=cg;
+						flag=false;
 					}
-                	if(model==2013&&j==1 && parking[i][j] == null){
+                	if(model==2013&&j==1 && parking[i][j] == null&& flag==true){
 						map[i][j]=1;
 						parking[i][j]=cg;
+						flag=false;
 					}
-					if(model==2012&&j==2 && parking[i][j] == null){
+					if(model==2012&&j==2 && parking[i][j] == null&&flag==true&&flag==true){
 						map[i][j]=1;
 						parking[i][j]=cg;					
+						flag=false;
 					}
-					if(model==2011&&j==3 && parking[i][j] == null){
-						map[i][j]=1;
-						parking[i][j]=cg;							
-					}
-					if(model<2011&&j==4 && parking[i][j] == null){
+					if(model==2011&&j==3 && parking[i][j] == null&&flag==true){
 						map[i][j]=1;
 						parking[i][j]=cg;	
+						flag=false;
+					}
+					if(model<2011&&j==4 && parking[i][j] == null&&flag==true){
+						map[i][j]=1;
+						parking[i][j]=cg;	
+						flag=false;
 					}
 				}
 			}						
@@ -234,28 +240,34 @@ public class ConcessionaireManager {
 		PropertyCard propertyCard = new PropertyCard(priceTP, yearTP,imageDocTP, owner);
 		CarElectric Ce=new CarElectric(basePrice,salePrice,brand, model,cylinderCapacity,mileage,type,plate,soat, mechanicalTechnical,propertyCard,doorsNumber,typeWindows,carType, chargerType, batteryDuration,batteryConsumption);
 		vehicles.add(Ce);
+		boolean flag=true;
 		if(type=="USED"&& model<2015){
 			for(int i=0;i<f1;i++){
 				for(int j=0;j<c1;j++){		
-					if(model==2014&&j==0 && parking[i][j] == null){
+					if(model==2014&&j==0 && parking[i][j] == null&& flag==true){
 						map[i][j]=1;
 						parking[i][j]=Ce;
+						flag=false;
 					}
-                	if(model==2013&&j==1 && parking[i][j] == null){
+                	if(model==2013&&j==1 && parking[i][j] == null&& flag==true){
 						map[i][j]=1;
 						parking[i][j]=Ce;
+						flag=false;
 					}
-					if(model==2012&&j==2 && parking[i][j] == null){
+					if(model==2012&&j==2 && parking[i][j] == null&& flag==true){
 						map[i][j]=1;
 						parking[i][j]=Ce;					
+						flag=false;
 					}
-					if(model==2011&&j==3 && parking[i][j] == null){
+					if(model==2011&&j==3 && parking[i][j] == null&& flag==true){
 						map[i][j]=1;
 						parking[i][j]=Ce;							
+						flag=false;
 					}
-					if(model<2011&&j==4 && parking[i][j] == null){
+					if(model<2011&&j==4 && parking[i][j] == null&& flag==true){
 						map[i][j]=1;
 						parking[i][j]=Ce;	
+						flag=false;
 					}
 				}
 			}						
@@ -274,28 +286,34 @@ public class ConcessionaireManager {
 
 		CarHybird Ch=new CarHybird(basePrice,salePrice,brand, model,cylinderCapacity,mileage,type,plate,soat,mechanicalTechnical,propertyCard,doorsNumber,typeWindows,carType,gasolineTankCapacity, typeGasoline, oilConsumeByKm,chargerType, batteryDuration,batteryConsumption);
 		vehicles.add(Ch);
+		boolean flag=true;
 		if(type=="USED"&& model<2015){
 			for(int i=0;i<f1;i++){
 				for(int j=0;j<c1;j++){		
-					if(model==2014&&j==0 && parking[i][j] == null){
+					if(model==2014&&j==0 && parking[i][j] == null&& flag==true){
 						map[i][j]=1;
 						parking[i][j]=Ch;
+						flag=false;
 					}
-                	if(model==2013&&j==1 && parking[i][j] == null){
+                	if(model==2013&&j==1 && parking[i][j] == null&& flag==true){
 						map[i][j]=1;
 						parking[i][j]=Ch;
+						flag=false;
 					}
-					if(model==2012&&j==2 && parking[i][j] == null){
+					if(model==2012&&j==2 && parking[i][j] == null&& flag==true){
 						map[i][j]=1;
-						parking[i][j]=Ch;					
+						parking[i][j]=Ch;
+						flag=false;					
 					}
-					if(model==2011&&j==3 && parking[i][j] == null){
+					if(model==2011&&j==3 && parking[i][j] == null&& flag==true){
 						map[i][j]=1;
-						parking[i][j]=Ch;							
+						parking[i][j]=Ch;						
+						flag=false;
 					}
-					if(model<2011&&j==4 && parking[i][j] == null){
+					if(model<2011&&j==4 && parking[i][j] == null&& flag==true){
 						map[i][j]=1;
-						parking[i][j]=Ch;	
+						parking[i][j]=Ch;
+						flag=false;
 					}
 				}
 			}						
@@ -314,28 +332,34 @@ public class ConcessionaireManager {
 		PropertyCard propertyCard = new PropertyCard(priceTP, yearTP,imageDocTP, owner);	
 		Motorcycle Mt=new Motorcycle(basePrice,salePrice,brand, model,cylinderCapacity,mileage,type,plate,soat, mechanicalTechnical,propertyCard, gasolineCapacity,oilConsume,MotoType);
 		vehicles.add(Mt);
+		boolean flag=true;
 		if(type=="USED"&& model<2015){
 			for(int i=0;i<f1;i++){
 				for(int j=0;j<c1;j++){		
-					if(model==2014&&j==0 && parking[i][j] == null){
+					if(model==2014&&j==0 && parking[i][j] == null&& flag==true){
 						map[i][j]=1;
 						parking[i][j]=Mt;
+						flag=false;
 					}
-                	if(model==2013&&j==1 && parking[i][j] == null){
+                	if(model==2013&&j==1 && parking[i][j] == null&& flag==true){
 						map[i][j]=1;
 						parking[i][j]=Mt;
+						flag=false;
 					}
-					if(model==2012&&j==2 && parking[i][j] == null){
+					if(model==2012&&j==2 && parking[i][j] == null&& flag==true){
 						map[i][j]=1;
-						parking[i][j]=Mt;					
+						parking[i][j]=Mt;
+						flag=false;
 					}
-					if(model==2011&&j==3 && parking[i][j] == null){
-						map[i][j]=1;
-						parking[i][j]=Mt;							
-					}
-					if(model<2011&&j==4 && parking[i][j] == null){
+					if(model==2011&&j==3 && parking[i][j] == null&& flag==true){
 						map[i][j]=1;
 						parking[i][j]=Mt;	
+						flag=false;						
+					}
+					if(model<2011&&j==4 && parking[i][j] == null&& flag==true){
+						map[i][j]=1;
+						parking[i][j]=Mt;	
+						flag=false;
 					}
 				}
 			}						
@@ -498,9 +522,91 @@ public class ConcessionaireManager {
 
 	//REQUERIMEITNPO 6
 	public String reportRangeYears(){
-		return null;
+		String out="";
+
+		for (int i=0;i<vehicles.size();i++){
+			if (vehicles.get(i).getModel()==2014){
+				out+="\n THE VEHICLES OF 2014 \n";
+				out+= vehicles.get(i).toString();
+				out+="----------------------------";
+			}
+			if (vehicles.get(i).getModel()==2013){
+				out+="\n THE VEHICLES OF 2013 \n";
+				out+= vehicles.get(i).toString();
+				out+="----------------------------";
+			}	
+			if (vehicles.get(i).getModel()==2012){
+				out+="\n THE VEHICLES OF 2012 \n";
+				out+= vehicles.get(i).toString();
+				out+="----------------------------";
+			}					
+			if (vehicles.get(i).getModel()<2011){
+				out+="\n THE VEHICLES OF 2011 \n";
+				out+= vehicles.get(i).toString();
+				out+="----------------------------";
+			}			
+		}		
+		return out;
 
 	}	
 
+	public String oldAndNew(){
+		String newe="";
+		String old="";
+		boolean flag=true;
+		boolean flag2=true;
+		for(int i=0;i<f1;i++){
+            for(int j=0;j<c1;j++){
+				if(parking[i][j]!=null){
+
+					if(parking[i][j].getModel() == 2014 && flag==true){
+						newe += parking[i][j].toString();
+						flag=false;
+					}else if(parking[i][j].getModel() == 2013 && flag==true){
+						newe += parking[i][j].toString();
+						flag=false;
+					}else if(parking[i][j].getModel() == 2012 && flag==true){
+						newe += parking[i][j].toString();
+						flag=false;
+					}else if(parking[i][j].getModel() <= 2011 && flag==true){
+						newe += parking[i][j].toString();
+						flag=false;
+					}
+				
+					if(parking[i][j].getModel()<= 2011 && flag2==true){
+						old = parking[i][j].toString();
+						flag2=false;
+					  }else if(parking[i][j].getModel() == 2012&& flag2==true){
+						old = parking[i][j].toString();
+						flag2=false;
+					  }else if(parking[i][j].getModel()== 2013&& flag2==true){
+						old = parking[i][j].toString();
+						flag2=false;
+					  }else if(parking[i][j].getModel()== 2014&& flag2==true){
+						old = parking[i][j].toString();
+						flag2=false;
+					  }				
+				}
+			}
+		}		
+		return "THE NEWEST CAR IT'S: "+newe +"\n THE OLDES IT'S: " + old;
+	}
+
+	public String percentajeOcupation(){
+		double c=0;
+		double percentaje;
+		for(int i=0;i<f1;i++){
+            for(int j=0;j<c1;j++){
+				if(parking[i][j]!=null){
+					c++;
+				}
+
+			}
+		}
+		percentaje=(c*50)*100;
+		String out="The percentaje of ocupation of the parking lot it's "+percentaje;
+		return out;
+
+	}
 }
 	

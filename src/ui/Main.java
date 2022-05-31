@@ -666,11 +666,11 @@ public class Main {
 				System.out.println(manager.reportRangeYears());
 				break;
 			case 2:
-				registerVehicle();
+				System.out.println(manager.oldAndNew());
 				break;
 		
 			case 3:
-				registerVehicle();
+				System.out.println(manager.percentajeOcupation());
 				break;	
 
 			default:
