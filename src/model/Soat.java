@@ -3,7 +3,6 @@ package model;
 public class Soat extends Document{
 
     public double covergeAmount;
-    protected int [][] soatDocument = new int [row][column];
 
 
     public Soat(double price, int year, String imageDoc, double covergeAmount){

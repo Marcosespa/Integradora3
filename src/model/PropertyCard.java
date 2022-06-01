@@ -3,7 +3,6 @@ package model;
 public class PropertyCard extends Document{
 
     public String owner;
-    protected int [][] propertyCardDocument = new int [row][column];
 
     public PropertyCard(double price, int year, String imageDoc, String owner){
         super(price, year,imageDoc);

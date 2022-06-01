@@ -4,7 +4,6 @@ public class MechanicalTechnical extends Document{
 
     public double gasLevels;
 
-    protected int [][] mechanicalTechnicalDocument = new int [row][column];
 
     public MechanicalTechnical(double price, int year, String imageDoc, double gasLevels){
         super(price, year,imageDoc);
